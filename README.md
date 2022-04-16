@@ -55,11 +55,12 @@ I think some best practices I would want to incorporate would be reviewing no mo
 
 ## Software Design and Engineering
 {::options parse_block_html="true" /}
-<details><summary markdown="span"> Click to View Code</summary>
-	'''CPP
-	#include cstdio
-	'''
-</details>
+<details><summary markdown="span"> Click to View Code</summary><p>
+'''
+#include cstdio
+cout << "Hello World << endl;
+'''
+</p></details>
 <br/>
 {::options parse_block_html="false" /}
 
