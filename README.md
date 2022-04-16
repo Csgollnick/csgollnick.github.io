@@ -55,6 +55,8 @@ I think some best practices I would want to incorporate would be reviewing no mo
 
 ## Software Design and Engineering
 
+
+
 ### Narrative
   This artifact was an appointment service application built as part of the final project of CS320.  The goal was to originally build a program that allowed a user to enter appointment details to create appointments as in a medical office setting.  
 	This artifact enters my ePortfolio as part of the Software Design and Engineering aspect.  I chose this item as it was originally a more complex Java program relying on multiple class files and performing a variety methods and method checks to accomplish its’ tasks.  This would have served as a view of my abilities to work within the confines of the Java programming language, develop testing structures, and build a functional application that adheres to limitations of user requirements and books an appointment.  It also served as a proof of my ability to work off a prompt that served as a customer statement of work and be able to build the software from what they said.  The improvements in this case have been to clear up and automate some of the methods and checks utilized as well as convert the application to C++ from Java.
@@ -64,6 +66,8 @@ I think some best practices I would want to incorporate would be reviewing no mo
 
 
 ## Algorithm and Data Structure
+
+[Authentication System program in Java] (main/_artifacts/datastructsalgor/IT145Authentication/src/AuthenticationSystem.java)
 
 ### Narrative
   This artifact is an authentication system in Java.  It was originally developed as part of the IT-145 class.  The original purpose was to develop a Java application that could get a username and password from a user, compare them against a file, and then return success or failure based on what it found for matches.  
