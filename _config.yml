@@ -8,3 +8,8 @@ defaults:
       path: "README.md"
     values:
       permalink: "index.html"
+      
+    scope:
+      path: "MOBILESIS.MD"
+    values:
+      permalink: "mobilesis.html"
