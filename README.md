@@ -4,6 +4,39 @@ youtubeId: b0CQV-9wtbs
 
 # Professional Self-Assessment
 
+I am an experienced Information Technology and Computer Science professional having more than 15 years experience in the field.  My carreer has spanned roles including 
+but not limtied to: Solutions Engineer, Technology Integration Trainer, Senior Technician, Client Technology Administrator, Cybersecurity Officer, Network Engineer, 
+Database Manager, Software Analyst, Software Developer, Director of Information Technology, and Chief Technology Officer. I have worked in both the orporate and 
+education industries and have been acknowledged for my level of work, efficiency, and personal interaction skills on multiple occassions.
+
+Throughout my coursework at Southern New Hampshire University's Computer Science - Software Engineering program has allowed me to build upon my skills in software and 
+systems engineering, security in coding and policies, database engineering, and client relations skills. 
+I have been able to study in a formalized environment in tema collaboration through GitHub based tools, how to effectively extrapolate client needs and formalize 
+proposals and analyses, work with and integrate advanced data structures and algorithms in a variety of applications in Python, Java, C++, and C, develop and create 
+complex and intricate applications in multiple languages, deploy them in client/server environments, craft multi-layered databases and integrate them into various 
+applications and use cases, and explore new and old projects to improve security standards within them as well as develop tactful and detailed security policies and 
+documentations for applications and teams. 
+
+The following is a sampling of artifacts of some of my work to demonstrate these skills. 
+
+For software design and engineering, I have chosen an appointment system application.  This program is designed to create a new user and/or appointment, update those 
+fields, read them, and delete them.  It employs a simplified database system that uses C++ source code and not SQL to store and check that information.  Itr also 
+includes a series of checks if the entered information violates determined rules such as date of an appointment in the past as well as warn the user of such problems. 
+The program was origionally written in Java.  For the integation into my ePortfolio I have completely re-coded it into C++ as well as cleaned up security issues and 
+logical issues that existed in the origional Java version.
+
+For data structures and algorithms, I have chosen a authentication system program written very early in my education.  This version made modifications to implement 
+better and higher level functions that I origionally did not have knowledge of.  This includes the implementations of hash tables to store credentials as opposed to an 
+unencrypted text file to review and compare authentication credentials.  I have added the ability to add a new user in this version as well.  It also utilizes an MD5 
+hashing algorithm for secure password storage encryption and decryption protocols. 
+
+For the datatbase, I have taken the frameworks obtained in the mobile appplication development course and developed a new Android application in Java.  The origional 
+application from the class was an event planner application which utilized sql databases and queries.  I took this idea and created a Mobile Student Information System 
+to demonstrate my ability to build mobile applications, utilize and query databases, and also works as an inclusion to my continued career in the education industry.  
+This application has multiple classes and includes protocols to check for users and their access levels against the database which will then determine what information 
+they can see and interact with.  It allows for users of the appropriate levels to then be able to create, read, update, and delete entries to other databses that 
+include such actions as schedules, classes, and user managment.  
+
 # Informal Code Review 
 
 ## What is code review?
