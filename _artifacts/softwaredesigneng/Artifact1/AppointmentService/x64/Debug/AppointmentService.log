@@ -1,0 +1,7 @@
+﻿  AppointmentService.cpp
+C:\Users\csgol\OneDrive\School\CS499\AppointmentService\AppointmentService.cpp(8,30): warning C4081: expected 'newline'; found ';'
+C:\Users\csgol\OneDrive\School\CS499\AppointmentService\AppointmentService.cpp(124,47): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+C:\Users\csgol\OneDrive\School\CS499\AppointmentService\AppointmentService.cpp(128,36): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+C:\Users\csgol\OneDrive\School\CS499\AppointmentService\AppointmentService.cpp(246,41): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\csgol\OneDrive\School\CS499\AppointmentService\AppointmentService.cpp(250,41): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  AppointmentService.vcxproj -> C:\Users\csgol\OneDrive\School\CS499\AppointmentService\x64\Debug\AppointmentService.exe
