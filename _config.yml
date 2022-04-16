@@ -1,3 +1,10 @@
 theme: jekyll-theme-architect
 title: Welcome to the ePortfolio of Chris Gollnick
 description: Please Check out My ePortfolio of my work
+
+defaults:
+  - 
+    scope:
+      path: "README.md"
+    values:
+      permalink: "index.html"
