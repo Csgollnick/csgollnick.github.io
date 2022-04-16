@@ -6,7 +6,7 @@ youtubeId: b0CQV-9wtbs
 
 # Informal Code Review 
 
-##Descriptive Text
+## Descriptive Text
 
 {% include youtubePlayer.html id=page.youtubeId %}
 
