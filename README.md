@@ -661,9 +661,9 @@ Click the collapsable views to see three examples from the application
 <a href="https://github.com/Csgollnick/csgollnick.github.io/tree/main/MobileSIS">or To View The Entire Project Click Here</a>	
 	
 {::options parse_block_html="true" /}
-	<details><summary markdown="span">Click to view the Main Activity Code</summary>
-		```java
-		package com.chrisgollnick.mobilesis;
+<details><summary markdown="span">Click to view the Main Activity Code</summary>
+```java
+	package com.chrisgollnick.mobilesis;
 
 	import android.content.Intent;
 	import android.support.v7.app.AppCompatActivity;
@@ -751,17 +751,17 @@ Click the collapsable views to see three examples from the application
 
 		}
 	}
-	```
+```
 
-	</details>
-	<br/>
+</details>
+<br/>
 
 {::options parse_block_html="false" /}
 	
 {::options parse_block_html="true" /}
-	<details><summary markdown="span">Click to view User Management Code</summary>
-		```java
-		package com.chrisgollnick.mobilesis;
+<details><summary markdown="span">Click to view User Management Code</summary>
+```java
+	package com.chrisgollnick.mobilesis;
 
 	import android.content.Intent;
 	import android.support.v7.app.AppCompatActivity;
@@ -919,15 +919,15 @@ Click the collapsable views to see three examples from the application
 
 
 	}
-		```
-	</details>
-	<br/>
+```
+</details>
+<br/>
 {::options parse_block_html="false" /}
 		
 {::options parse_block_html="true" /}
-	<details><summary markdown="span">Click to view User Database code</summary>
-		```java
-		package com.chrisgollnick.mobilesis;
+<details><summary markdown="span">Click to view User Database code</summary>
+```java
+	package com.chrisgollnick.mobilesis;
 
 	import android.content.ContentValues;
 	import android.content.Context;
@@ -1185,9 +1185,9 @@ Click the collapsable views to see three examples from the application
 		}
 
 	}
-		```
-		</details>
-		<br/>
+```
+</details>
+<br/>
 {::options parse_block_html="false" /}
 
 ### Narrative
