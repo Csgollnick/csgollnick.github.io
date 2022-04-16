@@ -1,7 +1,7 @@
 ---
 youtubeId: b0CQV-9wtbs
 ---
-[TestRelativelink](./MobileSIS)
+
 # Professional Self-Assessment
 
 I am an experienced Information Technology and Computer Science professional having more than 15 years experience in the field.  My carreer has spanned roles including 
@@ -655,14 +655,12 @@ public class AuthenticationSystem {
 
 
 ## Database
+
+Click the collapsable views to see three examples from the application	
 	
-
+[or To View The Entire Project Click Here](./MobileSIS)	
+	
 {::options parse_block_html="true" /}
-
-<details><summary markdown="span">Click to Mobile SIS Application Samples</summary>
-
-
-
 
 	<details><summary markdown="span">Click to Main Activity Java Code</summary>
 	```java
@@ -759,9 +757,9 @@ public class AuthenticationSystem {
 	</details>
 	<br/>
 
+{::options parse_block_html="false" /}
 
-
-
+{::options parse_block_html="true" /}
 	<details><summary markdown="span">Click to View User Management Code</summary>
 	```java
 	package com.chrisgollnick.mobilesis;
@@ -928,9 +926,9 @@ public class AuthenticationSystem {
 	</details>
 	<br/>
 
+{::options parse_block_html="false" /}
 
-
-
+{::options parse_block_html="true" /}
 
 	<details><summary markdown="span">Click to View User Database Code</summary>
 	```java
@@ -1196,12 +1194,7 @@ public class AuthenticationSystem {
 	</details>
 	<br/>
 
-</details>
-<br/>
-
 {::options parse_block_html="false" /}
-
-[To View The Entire Project Click Here](./MobileSIS/main)	
 
 ### Narrative
   The artifact is to be used for the database requirement.  The artifact I am using in is an Android application that is a mobile SIS system.  This exact artifact is being specifically created for these purposes.  I am using source code from the event manager Android application created in CS360 Mobile App Development and adapting or modifying the code to fit my needs for this application.  
