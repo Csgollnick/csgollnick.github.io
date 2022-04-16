@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClassManagement">
+
+    <RadioGroup
+        android:layout_width="249dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="585dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/addclass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:onClick="onRadioButtonClicked"
+            android:text="Add Class" />
+
+        <RadioButton
+            android:id="@+id/removeclass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:onClick="onRadioButtonClicked"
+            android:text="Remove Class" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/classid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="466dp"
+        android:ems="14"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:hint="Class ID (i.e. Eng-1)"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/classname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="308dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="378dp"
+        android:ems="14"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:hint="Class Name (i.e. English 1)"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="477dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginBottom="206dp"
+        android:text="submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/homeclass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="346dp"
+        android:layout_marginBottom="208dp"
+        android:contentDescription="@string/home"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/homeAsUpIndicator" />
+</android.support.constraint.ConstraintLayout>
