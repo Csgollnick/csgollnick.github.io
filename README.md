@@ -658,7 +658,7 @@ public class AuthenticationSystem {
 
 Click the collapsable views to see three examples from the application	
 	
-[or To View The Entire Project Click Here](./MobileSIS)	
+<a href="https://github.com/Csgollnick/csgollnick.github.io/tree/main/MobileSIS">or To View The Entire Project Click Here</a>	
 	
 
 
