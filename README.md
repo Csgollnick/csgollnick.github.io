@@ -659,7 +659,9 @@ public class AuthenticationSystem {
 Click the collapsable views to see three examples from the application	
 	
 <a href="https://github.com/Csgollnick/csgollnick.github.io/tree/main/MobileSIS">or To View The Entire Project Click Here</a>	
-	
+
+### Main Activity where the login window and user authentication occur
+
 {::options parse_block_html="true" /}
 <details><summary markdown="span">Click to view the Main Activity Code</summary>
 ```java
@@ -757,7 +759,9 @@ Click the collapsable views to see three examples from the application
 <br/>
 
 {::options parse_block_html="false" /}
-	
+
+### User Management where you create, view, update, and delete users
+
 {::options parse_block_html="true" /}
 <details><summary markdown="span">Click to view User Management Code</summary>
 ```java
@@ -924,6 +928,7 @@ Click the collapsable views to see three examples from the application
 <br/>
 {::options parse_block_html="false" /}
 		
+### User Database where the database and tables are created and all functions that query the database reside for user management
 {::options parse_block_html="true" /}
 <details><summary markdown="span">Click to view User Database code</summary>
 ```java
