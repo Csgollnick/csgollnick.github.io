@@ -655,6 +655,553 @@ public class AuthenticationSystem {
 
 
 ## Database
+	
+
+{::options parse_block_html="true" /}
+
+<details><summary markdown="span">Click to Mobile SIS Application Samples</summary>
+
+
+
+
+	<details><summary markdown="span">Click to Main Activity Java Code</summary>
+	```java
+	package com.chrisgollnick.mobilesis;
+
+	import android.content.Intent;
+	import android.support.v7.app.AppCompatActivity;
+	import android.os.Bundle;
+	import android.text.Editable;
+	import android.text.TextWatcher;
+	import android.view.View;
+	import android.widget.Button;
+	import android.widget.EditText;
+	import android.widget.Toast;
+
+	public class MainActivity extends AppCompatActivity {
+
+		private EditText username;
+		private EditText password;
+		private Button loginButton;
+		private Button register;
+		public UserDB userdb;
+		public String roleAccess;
+
+		@Override
+		protected void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.activity_main);
+
+			username = (EditText) findViewById(R.id.usernameLogin);
+			password = (EditText) findViewById(R.id.passwordLogin);
+			loginButton = (Button) findViewById((R.id.loginbutton));
+			register = (Button) findViewById(R.id.adminbutton);
+			loginButton.setEnabled(false);
+			userdb= new UserDB(this);
+
+			username.addTextChangedListener((new TextWatcher() {
+				@Override
+				public void beforeTextChanged(CharSequence u, int start, int count, int after) {
+
+				}
+				@Override
+				public void onTextChanged(CharSequence u, int start, int before, int count) {
+
+				}
+				@Override
+				public void afterTextChanged(Editable u) {
+					if(u.toString().equals("")) {
+						loginButton.setEnabled(false);
+					} else {
+						loginButton.setEnabled(true);
+					}
+				}
+			}));
+
+			loginButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					String user = username.getText().toString();
+					String pass = password.getText().toString();
+
+					if (user.equals("") || pass.equals("")) {
+						Toast.makeText(MainActivity.this, "Enter All Fields", Toast.LENGTH_SHORT).show();
+					}
+
+					roleAccess = userdb.checkUserPasswordRole(user, pass);
+					if (roleAccess == "INVALID") {
+						Toast.makeText(MainActivity.this, "INVALID CREDENTIALS", Toast.LENGTH_LONG).show();
+					} else if (roleAccess == "Student") {
+						startActivity(new Intent(MainActivity.this, StudentView.class));
+					} else if (roleAccess == "PlatformManager") {
+						startActivity(new Intent(MainActivity.this, PMView.class));
+					} else if (roleAccess == "Faculty") {
+						startActivity(new Intent(MainActivity.this, FacultyView.class));
+					} else if (roleAccess == "AcademicAdmin") {
+						startActivity(new Intent(MainActivity.this, AcademicAdminView.class));
+					} else {
+						startActivity(new Intent(MainActivity.this, UhOhError.class));
+					}
+				}
+			});
+
+			register.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					startActivity(new Intent(MainActivity.this, RegisterAdmin.class));
+				}
+			});
+
+		}
+	}
+	```
+
+	</details>
+	<br/>
+
+
+
+
+	<details><summary markdown="span">Click to View User Management Code</summary>
+	```java
+	package com.chrisgollnick.mobilesis;
+
+	import android.content.Intent;
+	import android.support.v7.app.AppCompatActivity;
+	import android.os.Bundle;
+	import android.view.View;
+	import android.widget.Button;
+	import android.widget.EditText;
+	import android.widget.ImageButton;
+	import android.widget.RadioButton;
+	import android.widget.Toast;
+
+	public class UserManagement extends AppCompatActivity {
+
+		private RadioButton create;
+		private RadioButton update;
+		private RadioButton view;
+		private RadioButton delete;
+		private EditText first;
+		private EditText last;
+		private EditText password;
+		private EditText userid;
+		private EditText username;
+		private EditText role;
+		private Button submit;
+		private ImageButton homebutton;
+		private int radio;
+		public MainActivity main;
+		public UserDB userdb;
+
+
+		public void onRadioButtonClicked(View view) {
+			boolean checked = ((RadioButton) view).isChecked();
+
+			switch(view.getId()) {
+				case R.id.adduser:
+					if (checked)
+						radio = 1;
+					break;
+				case R.id.viewuser:
+					if(checked)
+						radio = 2;
+					break;
+				case R.id.updateuser:
+					if(checked)
+						radio = 3;
+					break;
+				case R.id.deleteuser:
+					if(checked)
+						radio = 4;
+					break;
+			}
+		}
+
+		@Override
+		protected void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			setContentView(R.layout.activity_user_management);
+
+			create = (RadioButton) findViewById(R.id.adduser);
+			update = (RadioButton) findViewById(R.id.updateuser);
+			view = (RadioButton)  findViewById(R.id.viewuser);
+			delete = (RadioButton) findViewById(R.id.deleteuser);
+			first = (EditText) findViewById(R.id.firstname);
+			last = (EditText)  findViewById(R.id.lastname);
+			password = (EditText) findViewById(R.id.password);
+			userid = (EditText) findViewById(R.id.userid);
+			username = (EditText) findViewById(R.id.username);
+			role = (EditText) findViewById(R.id.role);
+			submit = (Button) findViewById(R.id.submitbutton);
+			homebutton = (ImageButton) findViewById(R.id.home);
+			userdb = new UserDB(this);
+			main = new MainActivity();
+
+
+			submit.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					String firstname = first.getText().toString();
+					String lastname = last.getText().toString();
+					String upassword = password.getText().toString();
+					String uname = username.getText().toString();
+					String sID = userid.getText().toString();
+					int id = Integer.parseInt(sID);
+					String uRole = role.getText().toString();
+
+					//Add User
+					if(radio == 1) {
+						boolean exist = userdb.checkUser(id);
+						if(exist = false){
+							boolean state = userdb.insertData(id,firstname, lastname, upassword, uRole);
+							if(state = true) {
+								Toast.makeText(UserManagement.this, "User Added", Toast.LENGTH_SHORT).show();
+							} else {
+								Toast.makeText(UserManagement.this, "User Not Added", Toast.LENGTH_SHORT).show();
+							}
+						} else {
+							Toast.makeText(UserManagement.this, "User Already Exists", Toast.LENGTH_SHORT).show();
+						}
+						//View User
+					} else if (radio == 2) {
+						first.setText(userdb.GetfirstName(id));
+						last.setText(userdb.GetlastName(id));
+						role.setText(userdb.GetRole(id));
+						username.setText(userdb.GetuserName(id));
+					//Update User
+					} else if(radio == 3) {
+
+						if(uname != null || uname != "" ) {
+							userdb.UpdateUserName(id, uname);
+						}
+						if(firstname != null || firstname != "") {
+							userdb.UpdateFirstName(id, firstname);
+						}
+						if(lastname != null || lastname !="") {
+							userdb.UpdateLastName(id, lastname);
+						}
+						if(upassword != null || upassword != "") {
+							userdb.UpdatePassword(id, upassword);
+						}
+						if(uRole != null || uRole != "") {
+							userdb.UpdateRole(id, uRole);
+						}
+						Toast.makeText(UserManagement.this, "Updates Complete", Toast.LENGTH_SHORT).show();
+					}
+					//delete user
+					else if(radio == 4) {
+						userdb.deleteUser(id);
+						Toast.makeText(UserManagement.this, "User Deleted", Toast.LENGTH_SHORT).show();
+					}
+
+
+
+				}
+			});
+
+			homebutton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					String roleaccess = main.roleAccess;
+					if(roleaccess == "Platform Manager") {
+						startActivity(new Intent(UserManagement.this, PMView.class));
+					} else if (roleaccess == "Academic Admin") {
+						startActivity(new Intent(UserManagement.this, AcademicAdminView.class));
+					} else if (roleaccess == "Faculty") {
+						startActivity(new Intent(UserManagement.this, FacultyView.class));
+					} else if (roleaccess == "Student") {
+						startActivity(new Intent(UserManagement.this, StudentView.class));
+					}
+
+				}
+			});
+
+
+		}
+
+
+	}
+
+	```
+
+	</details>
+	<br/>
+
+
+
+
+
+	<details><summary markdown="span">Click to View User Database Code</summary>
+	```java
+	package com.chrisgollnick.mobilesis;
+
+	import android.content.ContentValues;
+	import android.content.Context;
+	import android.database.Cursor;
+	import android.database.sqlite.SQLiteDatabase;
+	import android.database.sqlite.SQLiteOpenHelper;
+	import android.nfc.Tag;
+	import android.support.v4.content.res.TypedArrayUtils;
+	import android.util.Log;
+
+	public class UserDB extends SQLiteOpenHelper {
+		public static final String DATABASE_NAME = "users.db";
+		public static final int VERSION = 1;
+
+
+		public UserDB(Context context) {
+			super(context, DATABASE_NAME, null, 1);
+		}
+
+		public static final class UsersTable {
+			public static final String TABLE_NAME = "users_table";
+			public static final String COL_1 = "_id";
+			public static final String COL_2 = "USERNAME";
+			public static final String COL_3 = "PASSWORD";
+			public static final String COL_4 = "ROLE";
+			public static final String COL_5 = "FIRSTNAME";
+			public static final String COL_6 = "LASTNAME";
+
+		}
+
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			db.execSQL("create table " + UsersTable.TABLE_NAME + " (" +
+					UsersTable.COL_1 + " INTEGER primary key, " +
+					UsersTable.COL_2 + " TEXT, " +
+					UsersTable.COL_3 + " TEXT, " +
+					UsersTable.COL_4 + " TEXT, " +
+					UsersTable.COL_5 + " TEXT, " +
+					UsersTable.COL_6 + " TEXT) ");
+		}
+
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion,
+							  int newVersion) {
+			db.execSQL("drop table if exists " + UsersTable.TABLE_NAME);
+			onCreate(db);
+		}
+
+
+
+
+		/*
+		* ***********************
+		* Authentication Methods
+		* ***********************
+		* */
+		//Method to check for username and password combinations for authentication
+
+		public String checkUserPasswordRole(String username, String password) {
+
+			String role ="";
+			SQLiteDatabase db = getReadableDatabase();
+			String sql = "Select * From " + UsersTable.TABLE_NAME + " where username = ? and password = ?";
+			Cursor cursorUP = db.rawQuery(sql, new String[]{username, password});
+			if (cursorUP.getCount() > 0) {
+				boolean auth = true;
+				if(cursorUP.moveToFirst()) {
+					do {
+						role = cursorUP.getString(4);
+					} while (cursorUP.moveToNext());
+
+				}
+
+			} else {
+				boolean auth = false;
+				role = "INVALID";
+			}
+			return role;
+		}
+
+		/*
+		* **********************
+		* Creation Data Methods
+		* **********************
+		* */
+
+		//Method to add to database
+		public boolean insertData(Integer id, String firstName, String lastName, String password, String role) {
+			SQLiteDatabase db = getWritableDatabase();
+
+			char firstletter = firstName.charAt(0);
+			String letter = String.valueOf(firstletter);
+			String username = letter + lastName;
+
+			ContentValues contentValues = new ContentValues();
+			contentValues.put(UsersTable.COL_1, id);
+			contentValues.put(UsersTable.COL_2, username);
+			contentValues.put(UsersTable.COL_3, password);
+			contentValues.put(UsersTable.COL_4, role);
+			contentValues.put(UsersTable.COL_5, firstName);
+			contentValues.put(UsersTable.COL_6, lastName);
+
+
+			long result = db.insert(UsersTable.TABLE_NAME, null, contentValues);
+			if (result == -1) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		//Method to check for user ID existence
+		public boolean checkUser(int id) {
+			SQLiteDatabase db = getReadableDatabase();
+			Cursor cursorUser = db.rawQuery("SELECT * FROM " + UsersTable.TABLE_NAME + " WHERE id = ?", new String[]{Integer.toString(id)});
+			if (cursorUser.getCount() > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		public boolean CheckAdminRegisterCode (String code) {
+			boolean found = false;
+			String[] codes = {"YA9Z6MBPNJYP","W8X6ZBKUGXP7","9V76SY6F7RYG",
+					"N974QGDYFW78","RXZQ7SYDMY8E","94H9UU664U4R",
+					"3WKM2Y8EP8YE","C9BG2F9QPY44","SY5PJQFDEYMP",
+					"QX3HX3NBDA3N","Z4QGDBZFYC3W","KA6RM84HAN2B","29Y96UT2B2RH",
+					"H74LR8Y6P5ZM","BF2LUJXQ6VJH","VBDQPJ3KEU7A",
+					"SJWMMUNP39LD","HHHA68M53988","5ABVSFLJYATD",
+					"9FK62S25WLC9"};
+			for(int i = 0; i < 19; i++) {
+				if(codes[i] == code) {
+					found = true;
+					break;
+				} else {
+					found = false;
+				}
+			}
+			return found;
+		}
+
+
+		/*
+		*****************************
+		* Get/View The Data Methods
+		* ***************************
+		* */
+		//get firstname
+		public String GetfirstName(int ID) {
+			String fname = "";
+			SQLiteDatabase db = this.getReadableDatabase();
+			Cursor cursor = db.rawQuery("Select * From " + UsersTable.TABLE_NAME + " Where id = ?", new String[] {Integer.toString(ID)});
+			if (cursor.moveToFirst()) {
+				do {
+					fname = cursor.getString(5);
+				} while (cursor.moveToNext());
+			}
+			cursor.close();
+			return fname;
+		}
+		//get lastname
+		public String GetlastName(int ID) {
+			String lname = "";
+			SQLiteDatabase db = this.getReadableDatabase();
+			Cursor cursor = db.rawQuery("Select * From " + UsersTable.TABLE_NAME + " Where id = ?", new String[] {Integer.toString(ID)});
+			if (cursor.moveToFirst()) {
+				do {
+					lname = cursor.getString(6);
+				} while (cursor.moveToNext());
+			}
+			cursor.close();
+			return lname;
+		}
+
+		//get username
+		public String GetuserName(int ID) {
+			String uname = "";
+			SQLiteDatabase db = this.getReadableDatabase();
+			Cursor cursor = db.rawQuery("Select * From " + UsersTable.TABLE_NAME + " Where id = ?", new String[] {Integer.toString(ID)});
+			if (cursor.moveToFirst()) {
+				do {
+					uname = cursor.getString(2);
+				} while (cursor.moveToNext());
+			}
+			cursor.close();
+			return uname;
+		}
+
+		//get role
+		public String GetRole(int ID) {
+			String role = "";
+			SQLiteDatabase db = this.getReadableDatabase();
+			Cursor cursor = db.rawQuery("Select * From " + UsersTable.TABLE_NAME + " Where id = ?", new String[] {Integer.toString(ID)});
+			if (cursor.moveToFirst()) {
+				do {
+					role = cursor.getString(5);
+				} while (cursor.moveToNext());
+			}
+			cursor.close();
+			return role;
+		}
+
+		/*
+		************************
+		* Update Data Methods
+		* **********************
+		* */
+		public boolean UpdateFirstName (int ID, String firstName) {
+			SQLiteDatabase db = getWritableDatabase();
+			ContentValues values = new ContentValues();
+			values.put(UsersTable.COL_5, firstName);
+			int rowsUpdated = db.update(UsersTable.TABLE_NAME, values, "_id = ?", new String[] {Integer.toString(ID)});
+			return rowsUpdated > 0;
+		}
+		public boolean UpdateLastName (int ID, String lastName) {
+			SQLiteDatabase db = getWritableDatabase();
+			ContentValues values = new ContentValues();
+			values.put(UsersTable.COL_6, lastName);
+			int rowsUpdated = db.update(UsersTable.TABLE_NAME, values, "_id = ?", new String[] {Integer.toString(ID)});
+			return rowsUpdated > 0;
+		}
+		public boolean UpdateUserName (int ID, String userName) {
+			SQLiteDatabase db = getWritableDatabase();
+			ContentValues values = new ContentValues();
+			values.put(UsersTable.COL_2, userName);
+			int rowsUpdated = db.update(UsersTable.TABLE_NAME, values, "_id = ?", new String[] {Integer.toString(ID)});
+			return rowsUpdated > 0;
+		}
+		public boolean UpdatePassword (int ID, String password) {
+			SQLiteDatabase db = getWritableDatabase();
+			ContentValues values = new ContentValues();
+			values.put(UsersTable.COL_3, password);
+			int rowsUpdated = db.update(UsersTable.TABLE_NAME, values, "_id = ?", new String[] {Integer.toString(ID)});
+			return rowsUpdated > 0;
+		}
+		public boolean UpdateRole (int ID, String role) {
+			SQLiteDatabase db = getWritableDatabase();
+			ContentValues values = new ContentValues();
+			values.put(UsersTable.COL_4, role);
+			int rowsUpdated = db.update(UsersTable.TABLE_NAME, values, "_id = ?", new String[] {Integer.toString(ID)});
+			return rowsUpdated > 0;
+		}
+
+		/*
+		 * *****************
+		 * Delete by ID
+		 * *****************
+		 * */
+		public boolean deleteUser(int id) {
+			SQLiteDatabase db = getWritableDatabase();
+			int rowsDeleted = db.delete(UsersTable.TABLE_NAME, UsersTable.COL_1 + " = ?",
+					new String[] { Integer.toString(id) });
+			return rowsDeleted > 0;
+		}
+
+	}
+	```
+	</details>
+	<br/>
+
+</details>
+<br/>
+
+{::options parse_block_html="false" /}
+
+[To View The Entire Project Click Here](./MobileSIS/main)	
 
 ### Narrative
   The artifact is to be used for the database requirement.  The artifact I am using in is an Android application that is a mobile SIS system.  This exact artifact is being specifically created for these purposes.  I am using source code from the event manager Android application created in CS360 Mobile App Development and adapting or modifying the code to fit my needs for this application.  
