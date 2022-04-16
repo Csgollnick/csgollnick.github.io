@@ -67,7 +67,7 @@ I think some best practices I would want to incorporate would be reviewing no mo
 
 ## Algorithm and Data Structure
 
-[Authentication System program in Java] (main/_artifacts/datastructsalgor/IT145Authentication/src/AuthenticationSystem.java)
+[Authentication System program in Java] (_artifacts/datastructsalgor/IT145Authentication/src/AuthenticationSystem.java)
 
 ### Narrative
   This artifact is an authentication system in Java.  It was originally developed as part of the IT-145 class.  The original purpose was to develop a Java application that could get a username and password from a user, compare them against a file, and then return success or failure based on what it found for matches.  
